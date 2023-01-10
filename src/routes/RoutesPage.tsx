@@ -1,12 +1,11 @@
 import React, {FC} from 'react';
 import {Routes, Route} from 'react-router-dom'
-import {BikeMap} from "../components/BikeMap/BikeMap";
+import {BikeMapContainer} from "../components/BikeMap/BikeMapContainer";
 
 export const RoutesPage:FC = () => {
     return (
         <Routes>
-            <Route path='*' element={<BikeMap/>}/>
-            <Route path='/bikes-map' element={<BikeMap/>}/>
+            <Route path='/bikes-map' element={<BikeMapContainer/>}/>
         </Routes>
     );
 }
