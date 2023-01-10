@@ -1,24 +1,38 @@
-import {FC} from "react";
-import {Map, GoogleApiWrapper} from "google-maps-react"
+import {FC, useRef} from "react";
+import {GoogleMap, Marker, InfoWindow, useJsApiLoader} from "@react-google-maps/api";
+import {containerStyles, londonCenter} from "../../settings";
 
 interface BikeMapProps {
-    google: string;
 }
 
-const BikeMap: FC<BikeMapProps> = ({google}) => {
+export const BikeMap: FC<BikeMapProps> = ({}) => {
+    const {isLoaded} = useJsApiLoader({
+        id:'google-bike-map',
+        googleMapsApiKey: 'AIzaSyD4lhPaHDGgOLLJRwsPQUBCSupvdxB_yac',
+    });
+
+    //Save map in ref if we want to access the map
+    const mapRef = useRef<google.maps.Map | null>(null)
+
+    const onLoad = (map: google.maps.Map): void => {
+        mapRef.current = map;
+    }
+
+    const onUnMount = (): void => {
+        mapRef.current = null;
+    }
+
+    if (!isLoaded) return <h2>Map is loading..</h2>
 
     return (
-       <Map
-           google={google}
-           style={{width: '100%', height: '100%'}}
-           initialCenter={{
-               lat: 51.507351,
-               lng: -0.127758,
-           }}
-       />
+        <div>
+            <GoogleMap
+                mapContainerStyle={containerStyles}
+                center={londonCenter}
+                zoom={10}
+                onLoad={onLoad}
+                onUnmount={onUnMount}
+            />
+        </div>
     )
 }
-
-export default GoogleApiWrapper({
-    apiKey: 'AIzaSyD4lhPaHDGgOLLJRwsPQUBCSupvdxB_yac'
-})(BikeMap)

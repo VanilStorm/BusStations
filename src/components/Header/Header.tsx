@@ -13,7 +13,7 @@ export const Header: FC<HeaderProps> = ({value,handleChange}) => {
     return (
         <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
             <Tabs value={value} onChange={handleChange} centered>
-                <Tab onClick={() => navigate('/test')} label="Bikes location"/>
+                <Tab onClick={() => navigate('/bikes-map')} label="Bikes location"/>
                 <Tab onClick={() => navigate('/no')} label="Item Two" />
                 <Tab onClick={() => navigate('/path')} label="Item Three" />
                 <Tab onClick={() => navigate('/four')} label="Item Four" />
