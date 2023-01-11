@@ -1,22 +1,22 @@
 import {FC, useEffect, useRef} from "react";
-import {BikeMap} from "./BikeMap";
+import {Map} from "./Map";
 import {useJsApiLoader} from "@react-google-maps/api";
-import {fetchBikesPos} from "../../store/actions/bikeMap";
 import {useActions} from "../../hooks/useActions";
 import {useTypeSelector} from "../../hooks/useTypeSelector";
 
-export const BikeMapContainer:FC = () => {
-    const {fetchBikesPos} = useActions();
-    const {bikesLocation} = useTypeSelector(state => state.bikeMapReducer);
+export const MapContainer:FC = () => {
+    const {fetchBikesPos, fetchUndergroundStations} = useActions();
+    const {bikesLocation, undergroundStations} = useTypeSelector(state => state.mapReducer);
 
     useEffect(() => {
         if (!bikesLocation.length) {
             fetchBikesPos()
+            fetchUndergroundStations()
         }
     }, [])
 
     const {isLoaded} = useJsApiLoader({
-        id:'google-bike-map',
+        id:'google-map',
         googleMapsApiKey: 'AIzaSyD4lhPaHDGgOLLJRwsPQUBCSupvdxB_yac',
     });
 
@@ -32,8 +32,8 @@ export const BikeMapContainer:FC = () => {
     }
 
 
-
     return (
-        <BikeMap isLoaded={isLoaded} onLoad={onLoad} onUnMount={onUnMount} bikesLocation={bikesLocation}/>
+        <Map isLoaded={isLoaded} onLoad={onLoad} onUnMount={onUnMount} bikesLocation={bikesLocation}
+             undergroundStations={undergroundStations}/>
     )
 }

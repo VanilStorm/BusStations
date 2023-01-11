@@ -3,7 +3,8 @@ export enum BikePosActionTypes {
 }
 
 export interface IBikePosState {
-    bikesLocation: IPositions[]
+    bikesLocation: IPositions[];
+    undergroundStations: IPositions[];
 }
 
 export interface IPositions {

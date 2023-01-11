@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import {bikeMapReducer} from "./bikeMapReducer";
+import {mapReducer} from "./mapReducer";
 
 export const rootReducer = combineReducers({
-    bikeMapReducer
+    mapReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
