@@ -22,7 +22,7 @@
       padding-left: 25px;
       height: 44px;
       line-height: 44px;
-      font-size: 14px;
+      font-size: 15px;
       position: relative;
       transition: .3s linear;
     }
@@ -57,5 +57,13 @@
     }
 
     li:hover:before {left: -20px;}
+  }
+}
+
+.buttons {
+  margin: 10px 0;
+
+  strong {
+    margin: 0 10px;
   }
 }

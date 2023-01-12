@@ -1,9 +1,11 @@
 export enum BusArrivalInfoActionTypes {
-    FETCH_BUS_LINE = 'FETCH_BUS_LINE'
+    FETCH_BUS_LINE = 'FETCH_BUS_LINE',
+    INFO_IS_LOADING = 'INFO_IS_LOADING'
 }
 
 export interface IBusArrivalState {
     busArrivalInfo: IBusStationInfo[];
+    isLoading: boolean;
 }
 
 export interface IBusStationInfo {
@@ -18,4 +20,8 @@ export interface fetchBusInfo {
     payload: IBusStationInfo[]
 }
 
-export type BusArrivalActions = fetchBusInfo;
+export interface infoIsLoading {
+    type: BusArrivalInfoActionTypes.INFO_IS_LOADING
+}
+
+export type BusArrivalActions = fetchBusInfo | infoIsLoading;
