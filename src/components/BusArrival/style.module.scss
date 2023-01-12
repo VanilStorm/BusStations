@@ -1,0 +1,61 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Roboto","Helvetica","Arial","sans-serif";
+
+  .busInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    list-style: none;
+    width: 35%;
+    cursor: pointer;
+
+    p {
+      width: 100%;
+      color: #808285;
+      text-decoration: none;
+      display: inline-block;
+      padding-left: 25px;
+      height: 44px;
+      line-height: 44px;
+      font-size: 14px;
+      position: relative;
+      transition: .3s linear;
+    }
+
+    li {
+      position: relative;
+    }
+
+    p:before {
+      content: "";
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #ffffff;
+      position: absolute;
+      left: -30px;
+      top: 7px;
+    }
+
+    li:before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: darkgray;
+      position: absolute;
+      top: 12px;
+      left: -30px;
+      z-index: 2;
+      transition: .4s ease-in-out;
+
+    }
+
+    li:hover:before {left: -20px;}
+  }
+}

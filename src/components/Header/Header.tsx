@@ -15,8 +15,7 @@ export const Header: FC<HeaderProps> = ({value,handleChange}) => {
             <Tabs value={value} onChange={handleChange} centered>
                 <Tab onClick={() => navigate('/bikes-map')} label="Bikes location"/>
                 <Tab onClick={() => navigate('/underground-stations')} label="Underground stations" />
-                <Tab onClick={() => navigate('/path')} label="Item Three" />
-                <Tab onClick={() => navigate('/four')} label="Item Four" />
+                <Tab onClick={() => navigate('/bus-arrival')} label="Bus arrival" />
             </Tabs>
         </Box>
     );

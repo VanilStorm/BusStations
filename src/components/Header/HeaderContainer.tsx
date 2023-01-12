@@ -15,6 +15,8 @@ export const HeaderContainer: FC = () => {
             setValue(0)
         } else if (location.pathname === '/underground-stations') {
             setValue(1)
+        } else if (location.pathname === '/bus-arrival') {
+            setValue(2)
         }
     },[location.pathname])
 

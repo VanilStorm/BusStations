@@ -1,13 +1,13 @@
 import {FC, useEffect, useRef, useState} from "react";
 import {Map} from "./Map";
 import {useJsApiLoader} from "@react-google-maps/api";
-import {useActions} from "../../hooks/useActions";
+import {useActionsMap} from "../../hooks/useActionsMap";
 import {useTypeSelector} from "../../hooks/useTypeSelector";
 import {IPositions} from "../../types/bikeMap/types";
 import {useLocation} from "react-router";
 
 export const MapContainer:FC = () => {
-    const {fetchBikesPos, fetchUndergroundStations} = useActions();
+    const {fetchBikesPos, fetchUndergroundStations} = useActionsMap();
     const {bikesLocation, undergroundStations} = useTypeSelector(state => state.mapReducer);
     const [markerLoc, setMarkerLoc] = useState({} as IPositions);
     const location = useLocation();
@@ -15,6 +15,9 @@ export const MapContainer:FC = () => {
     useEffect(() => {
         if (!bikesLocation.length) {
             fetchBikesPos()
+        }
+
+        if (!undergroundStations.length) {
             fetchUndergroundStations()
         }
     }, [])
