@@ -23,9 +23,7 @@ export const MapContainer:FC = () => {
     }, [])
 
     useEffect(() => {
-        if (location.pathname !== '/underground-stations') {
-            setMarkerLoc({} as IPositions)
-        }
+        setMarkerLoc({} as IPositions)
     },[location.pathname])
 
     const handleCreateInfo = (item: IPositions): void => {
@@ -47,7 +45,6 @@ export const MapContainer:FC = () => {
     const onUnMount = (): void => {
         mapRef.current = null;
     }
-
 
     return (
         <Map isLoaded={isLoaded} onLoad={onLoad} onUnMount={onUnMount} bikesLocation={bikesLocation}
