@@ -14,13 +14,15 @@ interface BusArrivalProps {
     lineNumber: string,
     searchingValue: string,
     pageNum: number,
-    isLoading: boolean
+    isLoading: boolean,
+    error: boolean
 }
 
 export const BusArrival:FC<BusArrivalProps> = ({busArrivalInfo, lineNumber,
                                                    handleOnChangeLineNumber, pageNum, handleIncrement,
                                                    handleDecrement, isLoading, handleOnChangeSearch,
-                                                   searchingValue, handleFilter, handleDelFilter}) => {
+                                                   searchingValue, handleFilter, handleDelFilter,
+                                                   error}) => {
 
     return (
         <div className={style.wrapper}>
@@ -36,7 +38,7 @@ export const BusArrival:FC<BusArrivalProps> = ({busArrivalInfo, lineNumber,
                 />
 
                 {
-                    busArrivalInfo.length
+                    busArrivalInfo.length && !error
                         ?
                         <>
                             <TextField
@@ -66,7 +68,7 @@ export const BusArrival:FC<BusArrivalProps> = ({busArrivalInfo, lineNumber,
 
             </div>
             {
-                !isLoading
+                !isLoading && !error
                     ?
                     <ul className={style.busInfo}>
                         {busArrivalInfo.map((item, i) => {
@@ -89,11 +91,15 @@ export const BusArrival:FC<BusArrivalProps> = ({busArrivalInfo, lineNumber,
                         })}
                     </ul>
                     :
-                    <h3>Info is loading</h3>
+                    error
+                        ?
+                        <h3>There is no such bus line</h3>
+                        :
+                        <h3>Info is loading</h3>
             }
 
             {
-                busArrivalInfo.length && !isLoading
+                busArrivalInfo.length && !isLoading && !error
                     ?
                     <div className={style.buttons}>
                         <Button variant="contained" onClick={handleDecrement}>{"<"}</Button>

@@ -5,7 +5,7 @@ import {useActionsBus} from "../../hooks/useActionsMap";
 import {IBusStationInfo} from "../../types/busArrivals/types";
 
 export const BusArrivalContainer: FC = () => {
-    const {busArrivalInfo, isLoading} = useTypeSelector(state => state.busArrivalReducer);
+    const {busArrivalInfo, isLoading, error} = useTypeSelector(state => state.busArrivalReducer);
     const {fetchBusInfo} = useActionsBus();
     const [lineNumber, setLineNumber] = useState<string>('');
     const [pageNum, setPageNum] = useState<number>(1);
@@ -29,8 +29,8 @@ export const BusArrivalContainer: FC = () => {
         paginateArr.length = 0;
     }
 
-
     const handleFilter = () => {
+        setPageNum(1)
         setSearchingArr(busArrivalInfo.filter(item => item.towards.toLowerCase().includes(searchingValue.toLowerCase())))
     }
 
@@ -46,7 +46,9 @@ export const BusArrivalContainer: FC = () => {
     }
 
     const handleOnChangeLineNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setLineNumber(e.target.value)
+        if (e.target.value.length <= 3) {
+            if (!isLoading) setLineNumber(e.target.value)
+        }
     }
 
     const handleDecrement = () => {
@@ -66,6 +68,6 @@ export const BusArrivalContainer: FC = () => {
                        handleDecrement={handleDecrement} handleIncrement={handleIncrement}
                        isLoading={isLoading} handleOnChangeSearch={handleOnChangeSearch}
                        searchingValue={searchingValue} handleFilter={handleFilter}
-                       handleDelFilter={handleDelFilter}
+                       handleDelFilter={handleDelFilter} error={error}
     />
 }
