@@ -4,30 +4,67 @@ import style from "./style.module.scss"
 import {Button, TextField} from "@mui/material";
 
 interface BusArrivalProps {
-    handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    handleOnChangeLineNumber: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    handleOnChangeSearch: (e: React.ChangeEvent<HTMLInputElement>) => void,
     busArrivalInfo: IBusStationInfo[],
     handleIncrement: () => void,
     handleDecrement: () => void,
+    handleFilter: () => void,
+    handleDelFilter: () => void,
     lineNumber: string,
+    searchingValue: string,
     pageNum: number,
     isLoading: boolean
 }
 
 export const BusArrival:FC<BusArrivalProps> = ({busArrivalInfo, lineNumber,
-                                                   handleOnChange, pageNum, handleIncrement,
-                                                   handleDecrement, isLoading}) => {
+                                                   handleOnChangeLineNumber, pageNum, handleIncrement,
+                                                   handleDecrement, isLoading, handleOnChangeSearch,
+                                                   searchingValue, handleFilter, handleDelFilter}) => {
 
     return (
         <div className={style.wrapper}>
-            <TextField
-                id="outlined-number"
-                label="Enter bus line name (number)"
-                type="number"
-                style={{width: '20%', marginBottom: '20px'}}
-                maxRows='5'
-                value={lineNumber}
-                onChange={handleOnChange}
-            />
+            <div className={style.textFields}>
+                <TextField
+                    id="outlined-number"
+                    label="Enter bus line name (number)"
+                    type="number"
+                    style={{width: '20%', marginBottom: '20px'}}
+                    maxRows='5'
+                    value={lineNumber}
+                    onChange={handleOnChangeLineNumber}
+                />
+
+                {
+                    busArrivalInfo.length
+                        ?
+                        <>
+                            <TextField
+                                id="outlined-number"
+                                label="Search by towards"
+                                type="text"
+                                style={{width: '15%', margin: '0 5px 20px 10px'}}
+                                maxRows='5'
+                                onChange={handleOnChangeSearch}
+                                value={searchingValue}
+                            />
+
+                            <Button variant="contained" onClick={handleFilter}>{"Search"}</Button>
+
+                            <Button onClick={handleDelFilter}
+                                    style={{width: '2%', marginLeft: '4px'}}
+                                    variant="contained"
+                            >
+                                {"Del"}
+                            </Button>
+
+                        </>
+                        :
+                        null
+                }
+
+
+            </div>
             {
                 !isLoading
                     ?
