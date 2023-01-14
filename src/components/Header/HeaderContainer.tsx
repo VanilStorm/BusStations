@@ -1,14 +1,16 @@
 import React, {FC, useEffect, useState} from "react";
 import {Header} from "./Header";
 import {useLocation} from "react-router";
+import {useNavigate} from "react-router-dom";
 
 export const HeaderContainer: FC = () => {
     const [value, setValue] = useState(0);
     const location = useLocation();
+    const navigate = useNavigate();
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
+    useEffect(() => {
+        navigate('/bikes-map')
+    },[])
 
     useEffect(() => {
         if (location.pathname === '/bikes-map') {
@@ -20,6 +22,9 @@ export const HeaderContainer: FC = () => {
         }
     },[location.pathname])
 
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
+    };
 
     return <Header value={value} handleChange={handleChange}/>
 }
