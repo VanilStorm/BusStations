@@ -22,9 +22,9 @@ export const Map: FC<BikeMapProps> = ({bikesLocation, isLoaded,
                                           handleCreateInfo, markerLoc}) => {
     const location = useLocation();
 
-    if (!isLoaded) return <h2>Map is loading...</h2>
+    if (!isLoaded) return <h2 style={{textAlign:'center'}}>Map is loading...</h2>
 
-    if (!bikesLocation.length) return <h2>locations is loading...</h2>
+    if (!bikesLocation.length) return <h2 style={{textAlign: 'center'}}>locations is loading...</h2>
 
     return (
         <div>

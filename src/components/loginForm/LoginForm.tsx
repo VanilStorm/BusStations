@@ -8,11 +8,12 @@ interface loginProps {
     handleSetPassword: (e: React.ChangeEvent<HTMLInputElement>) => void,
     password: string,
     userName: string,
+    isError: boolean,
 
 }
 
 export const LoginForm: FC<loginProps> = ({handleSubmit, handleSetUserName, handleSetPassword,
-                                              password, userName }) => {
+                                              password, userName, isError }) => {
 
     return (
         <form onSubmit={handleSubmit}>
@@ -21,8 +22,9 @@ export const LoginForm: FC<loginProps> = ({handleSubmit, handleSetUserName, hand
                 <div className={style.inputs}>
                     <TextField
                         id="outlined-number"
-                        label="User name"
+                        label='User name'
                         type="text"
+                        error={isError}
                         style={{width: '17%'}}
                         value={userName}
                         onChange={handleSetUserName}
@@ -33,11 +35,15 @@ export const LoginForm: FC<loginProps> = ({handleSubmit, handleSetUserName, hand
                         id="outlined-number"
                         label="Password"
                         type="password"
+                        error={isError}
                         style={{width: '17%'}}
                         value={password}
                         onChange={handleSetPassword}
                     />
                 </div>
+
+                <div className={style.errorMessage}>{isError && '*Wrong password or username'}</div>
+
                 <div className={style.submitBtn}>
                     <input type='submit' value='Log in'/>
                 </div>

@@ -12,7 +12,7 @@
   }
   .inputs {
     width: 100%;
-    margin: 15px 0;
+    margin: 15px 0 0;
     text-align: center;
   }
 
@@ -36,5 +36,11 @@
     input:hover {
       background-color: rgb(212, 226, 255);
     }
+  }
+
+  .errorMessage {
+    color: #af0202;
+    font-size: 13px;
+    margin: 0 0 10px;
   }
 }
