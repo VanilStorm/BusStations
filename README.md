@@ -13,3 +13,9 @@ Password: 'admin1'
 ## VPN
 Also, for the correct display of data, people living in CIS countries should use a good VPN.
 Since the API is not available for these countries.
+
+## To launch the application successfully. 
+1. Make a clone of the repository (git clone ...)
+2. Make sure that you are in the root folder (use "cd" to navigate through folders)
+3. Install dependencies (npm/yarn install)
+4. Start (npm start). Usually the 3000 port is used
