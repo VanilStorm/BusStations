@@ -12,6 +12,7 @@ export const MapContainer:FC = () => {
     const [markerLoc, setMarkerLoc] = useState({} as IPositions);
     const location = useLocation();
 
+    //At the first render we get the data we need
     useEffect(() => {
         if (!bikesLocation.length) {
             fetchBikesPos()
@@ -22,14 +23,29 @@ export const MapContainer:FC = () => {
         }
     }, [])
 
+    //Deleting a marker after a transition
     useEffect(() => {
         setMarkerLoc({} as IPositions)
     },[location.pathname])
 
+    //Creating a marker info
     const handleCreateInfo = (item: IPositions): void => {
         setMarkerLoc(item);
     }
 
+    const randomBikeImg = ():string => {
+        const img = [
+            'https://afisha.london/wp-content/uploads/2019/09/Foto-Daniel-Jones.png',
+            'https://cdn.the-village.ru/the-village.ru/post_image-image/Wno8JEiblNPubQHHaVccDA-article.jpg',
+            'https://pytrip.ru/wp-content/uploads/2014/11/IMG_3749%D0%B0.jpg',
+            'https://www.urbanoid.by/files/mag/9m2GnODgO1__l.jpg',
+            'https://www.urbanoid.by/files/mag/geddgRMjBr__l.jpg'
+        ];
+
+        return img[Math.floor(Math.random() * img.length)];
+    }
+
+    //Checking if the map has loaded
     const {isLoaded} = useJsApiLoader({
         id:'google-map',
         googleMapsApiKey: 'AIzaSyD4lhPaHDGgOLLJRwsPQUBCSupvdxB_yac',
@@ -49,7 +65,7 @@ export const MapContainer:FC = () => {
     return (
         <Map isLoaded={isLoaded} onLoad={onLoad} onUnMount={onUnMount} bikesLocation={bikesLocation}
              undergroundStations={undergroundStations} handleCreateInfo={handleCreateInfo}
-             markerLoc={markerLoc}
+             markerLoc={markerLoc} randomBikeImg={randomBikeImg}
         />
     )
 }

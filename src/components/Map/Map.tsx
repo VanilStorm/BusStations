@@ -15,11 +15,13 @@ interface BikeMapProps {
     handleCreateInfo: (item: IPositions) => void;
     onLoad: (map: google.maps.Map) => void;
     onUnMount: () => void;
+    randomBikeImg: () => string;
 }
 
 export const Map: FC<BikeMapProps> = ({bikesLocation, isLoaded,
                                           onLoad, onUnMount, undergroundStations,
-                                          handleCreateInfo, markerLoc}) => {
+                                          handleCreateInfo, markerLoc, randomBikeImg,
+                                      }) => {
     const location = useLocation();
 
     if (!isLoaded) return <h2 style={{textAlign:'center'}}>Map is loading...</h2>
@@ -35,6 +37,7 @@ export const Map: FC<BikeMapProps> = ({bikesLocation, isLoaded,
                 zoom={12}
                 onLoad={onLoad}
                 onUnmount={onUnMount}
+                onClick={() => handleCreateInfo({} as IPositions)}
             >
 
 
@@ -80,7 +83,7 @@ export const Map: FC<BikeMapProps> = ({bikesLocation, isLoaded,
                         onCloseClick={() => handleCreateInfo({} as IPositions)}
                     >
                         <div>
-                            <img className={style.bikeImg} src="https://afisha.london/wp-content/uploads/2019/09/Foto-Daniel-Jones.png"
+                            <img className={style.bikeImg} src={randomBikeImg()}
                                  alt=":("/>
                             <ul>
                                 <li>

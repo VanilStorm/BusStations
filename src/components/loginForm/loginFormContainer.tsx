@@ -9,12 +9,15 @@ export const LoginFormContainer: FC = () => {
     const [isError, setIsError] = useState<boolean>(false)
     const dispatch = useDispatch();
 
+    //Check localstorage and set
     useEffect(() => {
         if (!localStorage['admin']) {
             localStorage.setItem('admin',JSON.stringify({user: 'admin', password: 'admin1'}));
         }
     },[])
 
+
+    //On submit check user is admin
     const handleSubmit = (e: React.SyntheticEvent) => {
         const {user, password} = JSON.parse(localStorage.getItem('admin') || '');
 
@@ -26,6 +29,7 @@ export const LoginFormContainer: FC = () => {
             setIsError(true)
         }
 
+        //Сancel the usual behavior of rebooting after the submission
         e.preventDefault();
     }
 

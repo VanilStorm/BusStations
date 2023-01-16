@@ -2,6 +2,11 @@
   margin: 0;
 }
 
+.headerItems {
+  display: flex;
+  align-items: center;
+}
+
 .container {
   position: fixed;
   margin-top: 25px;

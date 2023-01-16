@@ -3,6 +3,8 @@ import {Routes, Route} from 'react-router-dom'
 import {MapContainer} from "../components/Map/MapContainer";
 import {BusArrivalContainer} from "../components/BusArrival/BusArrivalContainer";
 
+
+//Paths available in the app
 export const RoutesPage:FC = () => {
     return (
         <Routes>

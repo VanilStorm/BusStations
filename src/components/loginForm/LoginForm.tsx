@@ -18,7 +18,7 @@ export const LoginForm: FC<loginProps> = ({handleSubmit, handleSetUserName, hand
     return (
         <form onSubmit={handleSubmit}>
             <div className={style.form}>
-                <h2>Login Form</h2>
+                <h1>London Assistant</h1>
                 <div className={style.inputs}>
                     <TextField
                         id="outlined-number"

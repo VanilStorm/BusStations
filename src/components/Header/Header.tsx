@@ -10,6 +10,7 @@ interface HeaderProps {
 export const Header: FC<HeaderProps> = ({value,handleChange}) => {
     const navigate = useNavigate();
 
+    //Navigation bnts
     return (
         <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
             <Tabs value={value} onChange={handleChange} centered>

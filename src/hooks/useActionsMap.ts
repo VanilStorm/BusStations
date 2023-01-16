@@ -4,6 +4,7 @@ import * as BikesPosActionCreators from "../store/actions/map"
 import * as BusArrivalActionCreators from "../store/actions/busArrival";
 
 
+//We use this hook to combine actions into one object
 export const useActionsMap = () => {
     const dispatch = useDispatch();
 

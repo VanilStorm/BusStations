@@ -13,6 +13,7 @@ export const MainLayout: FC<MainLayoutProps> = ({children}) => {
     const {isUserLogin} = useTypeSelector(state => state.loginReducer);
     const [isLog, setIsLog] = useState(false);
 
+    //Checks whether the user is authorized or not
     useEffect(() => {
         if (!localStorage['isLogin']) {
             localStorage.setItem('isLogin',JSON.stringify(false));
@@ -31,9 +32,10 @@ export const MainLayout: FC<MainLayoutProps> = ({children}) => {
         return <LoginFormContainer/>
     }
 
+    //"children" is our content
     return (
         <div>
-            <div style={{display: 'flex', alignItems: 'center'}}>
+            <div className={style.headerItems}>
                 <HeaderContainer/>
                 <DrawerMenu/>
             </div>

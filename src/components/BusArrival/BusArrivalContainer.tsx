@@ -12,12 +12,14 @@ export const BusArrivalContainer: FC = () => {
     const [searchingValue, setSearchingValue] = useState<string>('');
     const [searchingArr, setSearchingArr] = useState<IBusStationInfo[]>([]);
 
+    //Pagination
     const pageSize = 5;
     const paginateArr = searchingArr.length ?
         searchingArr.slice((pageNum - 1) * pageSize, pageNum * pageSize)
         :
         busArrivalInfo.slice((pageNum - 1) * pageSize, pageNum * pageSize);
 
+    //Fetch new line if lineNumber changes
     useEffect(() => {
         if (lineNumber && !isLoading) {
             fetchBusInfo(lineNumber);
@@ -29,6 +31,7 @@ export const BusArrivalContainer: FC = () => {
         paginateArr.length = 0;
     }
 
+    //case-resistant filter
     const handleFilter = () => {
         setPageNum(1)
         setSearchingArr(busArrivalInfo.filter(item => item.towards.toLowerCase().includes(searchingValue.toLowerCase())))
@@ -39,7 +42,6 @@ export const BusArrivalContainer: FC = () => {
         setSearchingValue('')
         setPageNum(1)
     }
-
 
     const handleOnChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchingValue(e.target.value)
