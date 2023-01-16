@@ -1,6 +1,5 @@
 import React, {FC, useEffect, useState} from "react";
 import {LoginForm} from "./LoginForm";
-import {useTypeSelector} from "../../hooks/useTypeSelector";
 import {useDispatch} from "react-redux";
 import {loginAction} from "../../store/actions/login";
 

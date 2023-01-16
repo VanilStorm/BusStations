@@ -39,7 +39,7 @@ export const LoginForm: FC<loginProps> = ({handleSubmit, handleSetUserName, hand
                     />
                 </div>
                 <div className={style.submitBtn}>
-                    <input type='submit' value='Submit'/>
+                    <input type='submit' value='Log in'/>
                 </div>
             </div>
         </form>

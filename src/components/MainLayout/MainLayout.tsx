@@ -3,6 +3,7 @@ import {HeaderContainer} from "../Header/HeaderContainer";
 import style from './style.module.scss';
 import {LoginFormContainer} from "../loginForm/loginFormContainer";
 import {useTypeSelector} from "../../hooks/useTypeSelector";
+import {DrawerMenu} from "../Drawer/Drawer";
 
 interface MainLayoutProps {
     children: React.ReactNode;
@@ -32,7 +33,10 @@ export const MainLayout: FC<MainLayoutProps> = ({children}) => {
 
     return (
         <div>
-            <HeaderContainer/>
+            <div style={{display: 'flex', alignItems: 'center'}}>
+                <HeaderContainer/>
+                <DrawerMenu/>
+            </div>
             <div className={style.container}>
                 {children}
             </div>
